@@ -1,4 +1,8 @@
 import sys
+from pymongo import MongoClient
+import os
+
+TEST_MONGODB_URI_ENV = "TEST_MONGODB_URI"
 
 
 def init_request(request):
@@ -9,3 +13,12 @@ def init_request(request):
         exit(1)
 
     request["header"]["token"] = sys.argv[1]
+
+
+def restore_initial_state(database, collection) -> bool:
+    client = MongoClient(os.environ.get(TEST_MONGODB_URI_ENV))
+
+    database = client[database]
+    collection = database[collection]
+
+    collection.drop()
