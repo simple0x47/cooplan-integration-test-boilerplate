@@ -16,9 +16,14 @@ def init_request(request):
 
 
 def restore_initial_state(database, collection) -> bool:
-    client = MongoClient(os.environ.get(TEST_MONGODB_URI_ENV))
+    try:
+        client = MongoClient(os.environ.get(TEST_MONGODB_URI_ENV))
 
-    database = client[database]
-    collection = database[collection]
+        database = client[database]
+        collection = database[collection]
 
-    collection.drop()
+        collection.drop()
+
+        return True
+    except:
+        return False
