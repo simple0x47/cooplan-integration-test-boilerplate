@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "cooplan_integration_test_boilerplate"
 version = "0.0.2"
 dependencies = [
-    "pymongo[srv] > 4.3.3"
+    "pymongo[srv] >= 4.3.3"
 ]
 authors = [
     { name="Gabriel Amihalachioaie", email="gabriel@simpleg.eu"}
